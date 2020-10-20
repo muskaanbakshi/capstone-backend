@@ -18,7 +18,7 @@ api = Api(app)
 parser = reqparse.RequestParser()
 parser.add_argument('query')
 
-MODEL_PATH = './model/RandomForest.pkl'
+MODEL_PATH = './model/MultinomialNB.pkl'
 
 with open(MODEL_PATH, 'rb') as file:
     model = pickle.load(file)
@@ -34,7 +34,7 @@ class ComplaintClassifier(Resource):
     def get(self):
         return {'Welcome!': 'This is a sample response of ComplaintClassifier.'}
 
-api.add_resource(ComplaintClassifier, '/')
+api.add_resource(ComplaintClassifier, '/sign-in')
 
 class PredictClass(Resource):
     def get(self):
@@ -59,4 +59,4 @@ api.add_resource(PredictClass, '/predict')
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=3000)
